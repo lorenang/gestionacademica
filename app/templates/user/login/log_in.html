@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% block title %} Inicio de Sesión {% endblock %}
+
+{% block head %}
+{{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/login.css') }}"
+/>
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/general.css') }}"
+/>
+{% endblock %}
+
+{%block navbar%}
+{{super()}}
+{%endblock%}
+
+{% block content %}
+<form action="{{url_for('auth.login')}}" class="d-flex justify-content-center align-items-center" id="login" method="POST">
+  <div class="container login">
+
+    <div class="d-flex flex-column align-items-center py-3">
+      <img src="{{ url_for('static', filename='img/ispplogo.png')}}" class="img-fluid login-img">
+
+      <h1 class="mb-3">Bienvenido</h1>
+
+      <div class="mb-3 w-75">
+        <input
+          type="text"
+          id="correo"
+          name="Lcorreo"
+          class="form-control form-custom"
+          placeholder="DNI"
+        />
+      </div>
+      <div class="mb-3 w-75">
+        <input
+          type="password"
+          id="password"
+          name="Lpassword"
+          class="form-control form-custom"
+          placeholder="Contraseña"
+        />
+      </div>
+      <button class="btn btn-primary mb-3" type="submit">Iniciar Sesión</button>
+      <a href="{{url_for('auth.recuperar_contraseña')}}" class="text-center mb-4">¿Olvidaste tu contraseña</a>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
+{%block script%} 
+{{super()}}
+<script src="{{url_for('static', filename='/scripts/login.js')}}"></script>
+{%endblock%}
+
+{% block alertas %}
+{{super()}}
+{% endblock %}

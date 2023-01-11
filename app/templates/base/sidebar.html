@@ -1,0 +1,72 @@
+{%if current_user.is_authenticated and session['perfilid'] %}
+<nav id="sidebarMenu" class="collapse d-md-block sidebar col-2 collapse bg-white">
+  <div class="position-sticky h-100">
+    <div class="list-group list-group-flush h-100 d-flex flex-column bd-highlight mb-3">
+      <a href="{{url_for('usuario.mostrar_Datospersonales_usuarioperfil')}}" class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong>Datos Personales</strong> </span>
+      </a>
+      <!-- Bedeles -->
+      {%if session['perfilid'] == 5%}
+      <a href="{{url_for('bedel.mostrar_carreras_usuarioperfil')}}" class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong> Mis Carreras </strong>  </span>
+      </a>
+      <!-- Si el usuarioperfil del perfil que se logio está habilitado -->
+      {% if session['usuarioperfilactivo']%}
+      <a href="{{url_for('bedel.mostrar_alumnos')}}" class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong> Administración de Usuarios</strong> </span>
+      </a>
+      {%endif%}
+
+      {%endif%}
+
+      <!-- Docentes -->
+      {%if session['perfilid'] == 6%}
+      <a href="{{url_for('docente.mostrar_carreras_usuarioperfil')}}" class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong> Mis carreras </strong>  </span>
+      </a>
+      {%endif%}
+
+      <!-- Alumno -->
+      {%if session['perfilid'] == 7%}
+      <a href="{{url_for('alumno.mostrar_datossecundaria_usuarioperfil')}}"
+        class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong> Datos Secundaria</strong> </span>
+      </a>
+      <a href="{{url_for('alumno.mostrar_carreras_usuarioperfil')}}" class="list-group-item list-group-item-action py-2 ripple">
+        <span> <strong> Mis carreras </strong>  </span>
+      </a>
+      {%endif%}
+
+      
+      <div class="cambiarperfil mt-auto bd-highlight" id="cambiarperfil">
+        <a href="{{url_for('auth.seleccionar_perfil')}}" class="list-group-item list-group-item-action py-2 ripple ">
+          <span> <strong> Cambiar Perfil - <div id="perfilidobtenido" style="display:inline;"></div> </strong> </span>
+        </a>
+      </div>
+
+
+    </div>
+  </div>  
+</nav>
+
+<script>
+  async function getPerfiles() {
+    const perfil_url = await fetch({{ url_for('usuario.obtener_count_perfiles')|tojson }});
+    obj = await perfil_url.json();
+    intobj = parseInt(obj['Respuesta'])
+
+    if (intobj < 2) {
+      document.getElementById('cambiarperfil').remove();
+    }
+    else if (intobj >= 2) {
+      {% if session['perfilid'] %}
+      const user_url = {{ url_for('usuario.obtener_nombre_perfil')|tojson }};
+      const perdilid = document.getElementById('perfilidobtenido')
+      fetch(user_url).then(response => response.json()).then(data => perdilid.innerHTML=data['Respuesta'])
+      {% endif %}
+    }
+  }
+
+  getPerfiles();
+</script>
+{%endif%}

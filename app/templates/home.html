@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+
+{% block titulo %}
+ISPP N°1
+{% endblock %}
+
+{% block head%}
+{{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/home.css') }}"
+/>
+{% endblock %}
+
+{% block navbar %}
+{{super()}}
+{% endblock %}
+
+{% block sidebar %}
+{{super()}}
+{% endblock %}
+
+{%block content%}
+<div class="hero d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 d-flex justify-content-center flex-column">
+        <h1 class="display-4 titulo">
+          Instituto Superior del Profesorado Provincial N°1
+        </h1>
+        <span class="text-muted text-center h5">Prof. Rodolfo Argentino Díaz</span>
+      </div>
+      <div class="col-md-6">
+        <img src="{{ url_for('static', filename='img/hero.jpeg')}}" class="img-fluid img-hero">
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    
+    <a class="text-dark" href="mailto:soporteispp@gmail.com?Subject=Informar%20errores%20en%20l%20sistema">Contactar a soporte</a>
+    <br>
+    <p>© 2022 Copyright</p>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+{% endblock %}
