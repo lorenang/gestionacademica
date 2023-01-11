@@ -1,4 +1,4 @@
-SECRET_KEY = 'testeodeapidepytohn1239ij12908jasdijd'
+SECRET_KEY = 'testeodeapidepytohn'
 
 MYSQL_HOST = 'localhost'
 MYSQL_USER = ''
