@@ -413,7 +413,7 @@ class usuarioDatos():
         try:
             cur = mysql.connection.cursor()
             consulta = (
-                'SELECT UsuarioNombre, UsuarioApellido, observaciones FROM usuariodatos WHERE usuarioid = %s')
+                'SELECT UsuarioNombre, UsuarioApellido, Observaciones FROM usuariodatos WHERE usuarioid = %s')
             cur.execute(consulta, [usuarioid])
             NombreApellido = cur.fetchone()
             # usuarioPerfilesid = cur.fetchall()

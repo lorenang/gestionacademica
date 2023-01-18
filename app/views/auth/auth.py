@@ -51,7 +51,7 @@ def login():
                     Usuario.update_temp_password(db, current_user.id)
 
                 # Si el usuario posee una contraseña temporal, se realiza una redirección hacia cambiar contraseña
-                if RetornoUsuario.usuariocontraseñatemp and not RetornoUsuario.usuariocontraseña:
+                if RetornoUsuario.usuariocontraseñatemp:
                     return redirect(url_for('auth.cambiar_contraseña'))
                 
                 return redirect(url_for('auth.verificar_roles'))
