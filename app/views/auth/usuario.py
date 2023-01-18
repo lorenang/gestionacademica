@@ -181,3 +181,4 @@ def editar_datosdomicilio_usuario():
     else:
         flash(error)
         return redirect(url_for('usuario.mostrar_Datospersonales_usuarioperfil'))
+    
